@@ -1,0 +1,27 @@
+# Build the Docker image
+docker build -t mixer_bot:1.0.0 .
+docker build -t mixer_bot .
+
+
+
+https://hub.docker.com/r/medaluka/mixer_bot/tags
+# tag and push docker image
+docker login
+
+docker tag mixer_bot:1.0.0 medaluka/mixer_bot:1.0.0
+docker tag mixer_bot medaluka/mixer_bot
+
+docker push medaluka/mixer_bot:1.0.0
+docker push medaluka/mixer_bot
+
+# SNAPSHOT
+docker build -t mixer_bot:SNAPSHOT .
+docker tag mixer_bot:SNAPSHOT medaluka/mixer_bot:SNAPSHOT
+docker push medaluka/mixer_bot:SNAPSHOT
+
+
+docker rm -f mixer_bot-SNAPSHOT
+docker run -d -p 8080:8080 -e TOKEN='' --name "mixer_bot-SNAPSHOT" medaluka/mixer_bot:SNAPSHOT
+
+# Run the Docker container with the TOKEN environment variable
+docker run -d -e TOKEN='' --name "mixer_bot" medaluka/mixer_bot
