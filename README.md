@@ -25,6 +25,10 @@ It includes commands for mixing teams, selecting maps.
 !mix_teams or !mix_team - Mix 10 provided players into two random teams of 5.
 ex. !mix_teams Alice Bob Carol Dave Eve Frank Grace Heidi Ivan Judy
 
+!mix_pair or !mix_pairs - From 10 provided players create 5 pairs(1st two players, 2nd two players,3rd two players...) and then randomize the teams in such a way that players that are pairs cannot play together.
+ex. !mix_pair Alice Bob Carol Dave Eve Frank Grace Heidi Ivan Judy
+
+
 !mix_map or !mix_maps - Select a random map from a predefined pool or from a user-provided list.
 predefined map pool: Dust2 Mirage Inferno Nuke Train Vertigo Ancient Anubis Cache
 ex. !mix_map Dust2 Mirage Inferno Nuke - returns 1 random map from provided list (Dust2 Mirage Inferno Nuke)
