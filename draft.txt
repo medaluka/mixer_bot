@@ -1,5 +1,5 @@
 # Build the Docker image
-docker build -t mixer_bot:1.0.0 .
+docker build -t mixer_bot:1.0.1 .
 docker build -t mixer_bot .
 
 
@@ -21,7 +21,17 @@ docker push medaluka/mixer_bot:SNAPSHOT
 
 
 docker rm -f mixer_bot-SNAPSHOT
+
+
+
 docker run -d -p 8080:8080 -e TOKEN='' --name "mixer_bot-SNAPSHOT" medaluka/mixer_bot:SNAPSHOT
 
 # Run the Docker container with the TOKEN environment variable
 docker run -d -e TOKEN='' --name "mixer_bot" medaluka/mixer_bot
+
+
+
+
+Test:
+docker build -t mixer_bot:RC0 .
+docker run -d -p 8080:8080 -e TOKEN="" --name "mixer_bot-RC0" mixer_bot:RC0

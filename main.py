@@ -85,6 +85,50 @@ async def on_message(message: Message) -> None:
         # Send the formatted teams to the channel
         await message.channel.send(response)
 
+    # Handle the !mix_pair command
+    if message.content.startswith('!mix_pairs') or message.content.startswith('!mix_pair'):
+        players = message.content.split()[1:]
+        # Check if the correct number of players is provided
+        if len(players) != 10:
+            await message.channel.send('You need to provide exactly 10 player names.')
+            return
+
+        # Capitalize player names
+        players = [player.capitalize() for player in players]
+
+        # Create pairs of players
+        pairs = [(players[i], players[i+1]) for i in range(0, len(players), 2)]
+        
+        # Generate a random 5-bit binary number
+        binary_number = f"{random.randint(0, 31):05b}"  # 31 is 11111 in binary
+
+        # Split players into teams based on the binary number
+        team1 = []
+        team2 = []
+        for i, bit in enumerate(binary_number):
+            if bit == '0':
+                team1.append(pairs[i][0])
+                team2.append(pairs[i][1])
+            else:
+                team1.append(pairs[i][1])
+                team2.append(pairs[i][0])
+
+        # Create the table-like structure for display
+        team1_table = "\n".join(team1)
+        team2_table = "\n".join(team2)
+        
+        response = (
+            "```\n"
+            f"Team A:\n{team1_table}\n"
+            "```\n"
+            "```\n"
+            f"Team B:\n{team2_table}\n"
+            "```"
+        )
+
+        # Send the formatted teams to the channel
+        await message.channel.send(response)
+
     # Handle the !mix_map and !mix_maps commands
     elif message.content.startswith('!mix_map') or message.content.startswith('!mix_maps'):
         maps = message.content.split()[1:]
