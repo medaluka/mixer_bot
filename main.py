@@ -45,9 +45,6 @@ async def on_message(message: Message) -> None:
         return
 
 
-
-
-
     # Handle the !mix_teams command
     if message.content.startswith('!mix_team') or message.content.startswith('!mix_teams'):
         players = message.content.split()[1:]
@@ -196,6 +193,7 @@ async def on_message(message: Message) -> None:
             "\n**__USAGE:__**\n"
             "`!mix_teams` or `!mix_team` - Mix 10 provided players into two random teams of 5.\n"
             "`!mix_map` or `!mix_maps` - Select a random map from a predefined pool or from a user-provided list.\n"
+            "`!mix_pair` or `!mix_pairs` - From 10 provided players create 5 pairs(1st two players, 2nd two players,3rd two players...) and then randomize the teams in such a way that players that are pairs cannot play together.\n"
             "`!mix_all` - Mix 10 provided players into two teams of 5 and select a random map from the predefined map pool.\n\n"
             "PREDEFINED MAP POOL: Dust2 Mirage Inferno Nuke Train Vertigo Ancient Anubis Cache\n\n"
             "examples:\n"
